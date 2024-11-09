@@ -14,7 +14,6 @@ from plugins.register import plugins_all
 import constants
 
 
-
 def add_plugins(page: Page) -> None:
     logs_view_plugins = [plugin(page) for plugin in plugins_all]
 

@@ -12,6 +12,7 @@ from flet import (
 
 
 class APlugin(ABC):
+	order = 0
 	container: Container = None
 	page: Page = None
 	name: str = None

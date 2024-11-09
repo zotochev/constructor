@@ -68,7 +68,7 @@ class WxCalculator:
 		self.__material_sigma = material_sigma
 
 
-@register_plugin
+# @register_plugin
 class BeamPlugin(APlugin):
 	name = "Beam"
 
