@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-from collections.abc import Callable
-from typing import TYPE_CHECKING
-from functools import partial
-
 from flet import (
 	Page,
 	Container,

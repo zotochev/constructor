@@ -9,7 +9,7 @@ requirements_file="$script_directory/requirements.txt"
 # Check if the virtual environment folder exists
 if [ ! -d "$env_path" ]; then
     echo "Virtual environment not found. Creating a new virtual environment in $script_directory..."
-    py -3 -m venv "$env_path"
+    python -m venv "$env_path"
 
     if [ $? -ne 0 ]; then
         echo "Failed to create the virtual environment."
