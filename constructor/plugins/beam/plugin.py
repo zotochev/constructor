@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import random
-import logging
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 from functools import partial
@@ -11,23 +9,15 @@ from flet import (
 	Container,
 	Column,
 	Row,
-	ButtonStyle,
-	Checkbox,
-	TextStyle,
 	colors,
-	ListView,
 	TextField,
 	Text,
-	alignment,
-	WindowDragArea,
-	KeyboardEvent,
 	MainAxisAlignment,
 )
 
 import constants
 
 from plugins.plugin import APlugin
-from plugins.register import register_plugin
 
 
 class Line(Row):
@@ -71,6 +61,7 @@ class WxCalculator:
 # @register_plugin
 class BeamPlugin(APlugin):
 	name = "Beam"
+	order = 1
 
 	def __init__(self, page: Page):
 		self.page = page
