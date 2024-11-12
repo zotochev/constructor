@@ -44,7 +44,7 @@ class Line(Row):
 
 class LoanPlugin(APlugin):
 	name = "Loan Calculator"
-	order = 0
+	order = 1
 
 	def __init__(self, page: Page):
 		self.page = page
