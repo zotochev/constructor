@@ -28,6 +28,7 @@ bd = {
 
 class DropDownListPlugin(APlugin):
 	name = "Drop Down List"
+	order = 1
 
 	def __init__(self, page: Page):
 		self.page = page
