@@ -1,6 +1,7 @@
 from __future__ import annotations
 from collections.abc import Callable
 from functools import partial
+from itertools import chain
 from msilib import Control
 from typing import Any, TYPE_CHECKING
 import logging
@@ -43,7 +44,7 @@ if TYPE_CHECKING:
 	from event_system import EventSystem
 
 
-TABLE_COLUMN_WIDTH = 13
+TABLE_COLUMN_WIDTH = 11
 TABLE_FONT = "Courier New"
 
 
@@ -73,6 +74,10 @@ def _validate_pos_int(value: Any) -> int:
 
 def _validate_pos_float(value: Any):
 	return _validate_positive(value)
+
+
+def _validate_pos_percent(value: Any) -> float:
+	return _validate_pos_float(value) / 100.0
 
 
 class Line(Row):
@@ -216,22 +221,29 @@ class LoanTable(Column):
 
 		for n in range(loan.number_of_payments()):
 			payment = loan.get_payment(n)
-			rows.append(Text(render_header([f'{x:.2f}' for x in payment], TABLE_COLUMN_WIDTH), font_family=TABLE_FONT, selectable=True))
+			rows.append(
+				Text(
+					render_header([f'{x:.2f}' for x in chain([n + 1], payment)], TABLE_COLUMN_WIDTH),
+					font_family=TABLE_FONT,
+					selectable=True,
+				)
+			)
 
 		self.table.controls.extend(rows)
 
 	def build_table(self) -> None:
 		self.table_header = ListView(
 			controls=[
-				Text(render_header([n for _, n in PAYMENT_FIELDS_NAMES], TABLE_COLUMN_WIDTH),
-					 font_family=TABLE_FONT)
+				Text(
+					render_header([n for _, n in chain([(None, '#')], PAYMENT_FIELDS_NAMES)], TABLE_COLUMN_WIDTH),
+					font_family=TABLE_FONT
+				),
 			],
 		)
 		self.table = ListView(
 			expand=True,
 		)
 		self.controls=[
-			# Divider(),
 			self.table_header,
 			Divider(),
 			self.table,
@@ -266,7 +278,7 @@ class LoanPlugin(APlugin):
 								event_system=self.event_system)
 		self.interest_rate_yearly = Line('Кредитная ставка, % год',
 										 on_change=partial(self.__on_change, self.calculator.set_interest_rate_yearly),
-										 validator=_validate_pos_float,
+										 validator=_validate_pos_percent,
 										 event_system=self.event_system)
 		self.loan_term_years = Line('Срок кредита, лет',
 									on_change=partial(self.__on_change, self.calculator.set_loan_term_years),
