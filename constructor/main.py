@@ -47,7 +47,6 @@ async def main(page: Page):
         snack_bar = SnackBar(Text(f"{message}"), open=True, duration=1000)
         page.overlay.append(snack_bar)
         page.update()
-        # page.snack_bar.open = True
 
     event_system.subscribe(Events.Main.error, handle_error_message)
 
