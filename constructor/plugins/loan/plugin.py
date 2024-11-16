@@ -2,7 +2,6 @@ from __future__ import annotations
 from collections.abc import Callable
 from functools import partial
 from itertools import chain
-from msilib import Control
 from typing import Any, TYPE_CHECKING
 import logging
 import textwrap

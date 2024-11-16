@@ -34,7 +34,10 @@ class Payment:
         return " | ".join(["{:12.2f}".format(self[k]) for k, _ in PAYMENT_FIELDS_NAMES])
 
     def __repr__(self):
-        return "Payment({})".format(', '.join(["{}={:.2f}".format(k, self[k]) for k, _ in PAYMENT_FIELDS_NAMES]))
+        return "{}({})".format(
+            self.__class__.__name__,
+            ', '.join(["{}={:.2f}".format(k, self[k]) for k, _ in PAYMENT_FIELDS_NAMES])
+        )
 
     def __iter__(self):
         return iter((self[k] for k, _ in PAYMENT_FIELDS_NAMES))
@@ -56,11 +59,17 @@ class Loan:
     def __str__(self):
         return (
             f"{self.__class__.__name__}("
-            f"loan_amount={self.loan_amount}, "
-            f"interest_rate_yearly={self.interest_rate_yearly}, "
-            f"loan_term_years={self.loan_term_years}"
+                f"loan_amount={self.loan_amount}, "
+                f"interest_rate_yearly={self.interest_rate_yearly}, "
+                f"loan_term_years={self.loan_term_years}"
             f")"
         )
+
+    def __getitem__(self, item):
+        return self.__payments[item]
+
+    def __len__(self):
+        return len(self.__payments)
 
     def calc(self):
         if not self.is_ready():
@@ -121,12 +130,6 @@ class Loan:
     def print(self):
         for payment in self.__payments:
             print(payment)
-
-    def __getitem__(self, item):
-        return self.__payments[item]
-
-    def __len__(self):
-        return len(self.__payments)
 
 
 class CustomIterator:

@@ -1,5 +1,3 @@
-import asyncio
-
 from flet import (
     Page,
     app,
