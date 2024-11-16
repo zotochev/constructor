@@ -60,15 +60,16 @@ class WxCalculator:
 
 class BeamPlugin(APlugin):
 	name = "Beam"
-	order = 0
+	order = 1
 
-	def __init__(self, page: Page):
+	def __init__(self, page: Page, event_system):
 		self.page = page
 		self.m_field = None
 		self.sigma_field = None
 		self.wx_field = None
 		self.calculator = WxCalculator()
 		self.container = self.build_container()
+		self.event_system = event_system
 
 	def build_container(self) -> Container:
 		self.m_field = Line('Момент, кH/м:', callback=partial(self.__calc, self.calculator.set_momentum))

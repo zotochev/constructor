@@ -7,8 +7,8 @@ from flet import (
 	Page,
 )
 
-# if TYPE_CHECKING:
-# 	from core.event_system import EventSystem
+if TYPE_CHECKING:
+	from event_system import EventSystem
 
 
 class APlugin(ABC):
@@ -16,4 +16,4 @@ class APlugin(ABC):
 	container: Container = None
 	page: Page = None
 	name: str = None
-	# event_system: EventSystem = None
+	event_system: EventSystem = None

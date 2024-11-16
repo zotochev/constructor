@@ -30,11 +30,12 @@ class DropDownListPlugin(APlugin):
 	name = "Drop Down List"
 	order = 1
 
-	def __init__(self, page: Page):
+	def __init__(self, page: Page, event_system):
 		self.page = page
 		self.dd = None
 		self.result: Text | None = None
 		self.container = self.build_container()
+		self.event_system = event_system
 
 	def build_container(self) -> Container:
 		self.dd = Dropdown(
