@@ -9,11 +9,17 @@ class NotReadyToCalculate(AssertionError):
 
 PAYMENT_FIELDS_NAMES = (
     ('loan_amount', 'Кредит, руб'),
-    ('payment_percents', 'Кредитная ставка, % год'),
-    ('payment_dept', 'Срок кредита, лет'),
+    ('payment_percents', 'Ежемесячный платеж начисленные проценты, руб'),
+    ('payment_dept', 'Ежемесячный платеж основной долг, руб'),
     ('payment', 'Ежемесячный платёж, руб'),
     ('remaining_payment', 'Остаток общей выплаты с учетом всех стандартных платежей, руб'),
 )
+
+def payment_field_name_by(field_id: str) -> str:
+    for id_, name in PAYMENT_FIELDS_NAMES:
+        if field_id == id_:
+            return name
+    return '-'
 
 
 @dataclasses.dataclass
