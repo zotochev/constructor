@@ -37,7 +37,7 @@ def add_plugins(page: Page, event_system: EventSystem) -> None:
 
 
 async def main(page: Page):
-    page.title = "Flet counter example"
+    page.title = "Constructor"
     page.vertical_alignment = MainAxisAlignment.CENTER
     page.window.width, page.window.max_width, page.window.min_width = [constants.PAGE_WIDTH] * 3
     page.window.height, page.window.max_height, page.window.min_height = [constants.PAGE_HEIGHT] * 3
