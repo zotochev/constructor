@@ -158,7 +158,7 @@ class LoanChart(LineChart):
 		]
 		self.__render_left_axis(max_payment)
 		self.__render_bottom_axis(number_of_payments)
-		self.animate=5000
+		self.animate=1000
 
 	def __render_left_axis(self, max_payment: float):
 		step = 1000

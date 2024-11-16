@@ -60,7 +60,6 @@ class WxCalculator:
 
 class BeamPlugin(APlugin):
 	name = "Beam"
-	order = 1
 
 	def __init__(self, page: Page, event_system):
 		self.page = page
