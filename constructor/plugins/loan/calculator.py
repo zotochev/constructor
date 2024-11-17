@@ -15,12 +15,6 @@ PAYMENT_FIELDS_NAMES = (
     ('remaining_payment', 'Остаток общей выплаты с учетом всех стандартных платежей, руб'),
 )
 
-def payment_field_name_by(field_id: str) -> str:
-    for id_, name in PAYMENT_FIELDS_NAMES:
-        if field_id == id_:
-            return name
-    return '-'
-
 
 @dataclasses.dataclass
 class Payment:
