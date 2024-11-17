@@ -43,12 +43,41 @@ class LoanChart(LineChart):
         points_debt = []
         max_payment = 0.0
         number_of_payments = loan.number_of_payments()
+        tooltip_style = TextStyle(size=10)
 
         for n in range(loan.number_of_payments()):
             payment = loan.get_payment(n)
             max_payment = max(max_payment, payment.payment_percents, abs(payment.payment_dept))
-            points_percents.append(LineChartDataPoint(x=n, y=round(payment.payment_percents, 2)))
-            points_debt.append(LineChartDataPoint(x=n, y=round(abs(payment.payment_dept), 2)))
+
+            percents_y = round(payment.payment_percents, 2)
+            tooltip_percents = "{} : {} : {}".format(
+                n,
+                payment_field_name_by('payment_percents'),
+                percents_y,
+            )
+            points_percents.append(
+                LineChartDataPoint(
+                    x=n,
+                    y=percents_y,
+                    tooltip=tooltip_percents,
+                    tooltip_style=tooltip_style,
+                )
+            )
+
+            debt_y = round(abs(payment.payment_dept), 2)
+            tooltip_debt = "{} : {} : {}".format(
+                n,
+                payment_field_name_by('payment_dept'),
+                debt_y,
+            )
+            points_debt.append(
+                LineChartDataPoint(
+                    x=n,
+                    y=debt_y,
+                    tooltip=tooltip_debt,
+                    tooltip_style=tooltip_style,
+                )
+            )
 
         self.data_series = [
             LineChartData(

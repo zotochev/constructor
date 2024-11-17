@@ -74,7 +74,6 @@ class LoanPlugin(APlugin):
 			height=constants.PLUGIN_CONTAINER_HEIGHT,
 		)
 
-
 	def __on_change(self, setter: Callable, value: Any):
 		try:
 			setter(value)
