@@ -5,7 +5,7 @@ import logging
 
 from flet import (
     Row,
-    colors,
+    Colors,
     TextField,
     Text,
     MainAxisAlignment,
@@ -36,15 +36,15 @@ class Line(Row):
     def __on_change(self, event):
         try:
             value = self.validator(event.data)
-            self.value_field.border_color = colors.BLACK
+            self.value_field.border_color = Colors.BLACK
             self.on_change(value)
         except AssertionError as ae:
-            self.value_field.border_color = colors.RED
+            self.value_field.border_color = Colors.RED
             logging.warning(f"{self.__class__.__name__}.__on_change: {ae.__class__.__name__}: {ae}")
             if self.event_system:
                 self.event_system.emit(Events.Main.error, f"{self._name}: {ae}")
         except Exception as e:
-            self.value_field.border_color = colors.RED
+            self.value_field.border_color = Colors.RED
             logging.error(f"{self.__class__.__name__}.__on_change: {e.__class__.__name__}: {e}")
 
         self.update()

@@ -1,35 +1,12 @@
 from __future__ import annotations
-from collections.abc import Callable
-from functools import partial
 from itertools import chain
 from typing import Any, TYPE_CHECKING
-import logging
-import textwrap
 
 from flet import (
-    Page,
-    Container,
     Column,
-    Row,
-    colors,
-    TextField,
     Text,
-    MainAxisAlignment,
     ListView,
     Divider,
-    LineChart,
-    LineChartData,
-    LineChartDataPoint,
-    Border,
-    BorderSide,
-    ChartAxisLabel,
-    ChartAxis,
-    FontWeight,
-    margin,
-    TextSpan,
-    TextStyle,
-    Switch,
-    ControlEvent,
 )
 
 from ..calculator import PAYMENT_FIELDS_NAMES

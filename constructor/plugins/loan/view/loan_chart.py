@@ -3,7 +3,7 @@ from typing import Any, TYPE_CHECKING
 
 from flet import (
     Container,
-    colors,
+    Colors,
     Text,
     LineChart,
     LineChartData,
@@ -32,9 +32,9 @@ class LoanChart(LineChart):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.border = Border(
-            bottom=BorderSide(4, colors.with_opacity(0.5, colors.ON_SURFACE))
+            bottom=BorderSide(4, Colors.with_opacity(0.5, Colors.ON_SURFACE))
         )
-        self.tooltip_bgcolor = colors.with_opacity(0.8, colors.BLUE_GREY)
+        self.tooltip_bgcolor = Colors.with_opacity(0.8, Colors.BLUE_GREY)
         self.min_y = 0
         self.min_x = 0
 
@@ -83,14 +83,14 @@ class LoanChart(LineChart):
             LineChartData(
                 points_percents,
                 stroke_width=8,
-                color=colors.LIGHT_GREEN,
+                color=Colors.LIGHT_GREEN,
                 curved=True,
                 stroke_cap_round=True,
             ),
             LineChartData(
                 points_debt,
                 stroke_width=8,
-                color=colors.PINK,
+                color=Colors.PINK,
                 curved=True,
                 stroke_cap_round=True,
             ),
@@ -111,9 +111,9 @@ class LoanChart(LineChart):
             ],
             labels_size=40,
             title=Text(spans=[
-                TextSpan(payment_field_name_by('payment_percents'), TextStyle(color=colors.LIGHT_GREEN)),
+                TextSpan(payment_field_name_by('payment_percents'), TextStyle(color=Colors.LIGHT_GREEN)),
                 TextSpan('\n'),
-                TextSpan(payment_field_name_by('payment_dept'), TextStyle(color=colors.PINK)),
+                TextSpan(payment_field_name_by('payment_dept'), TextStyle(color=Colors.PINK)),
             ]),
             title_size=40,
         )
@@ -131,7 +131,7 @@ class LoanChart(LineChart):
                             f"{n}",
                             size=16,
                             weight=FontWeight.BOLD,
-                            color=colors.with_opacity(0.5, colors.ON_SURFACE),
+                            color=Colors.with_opacity(0.5, Colors.ON_SURFACE),
                         ),
                         margin=margin.only(top=10),
                     ),

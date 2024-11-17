@@ -8,7 +8,7 @@ from flet import (
 	Container,
 	Column,
 	Row,
-	colors,
+	Colors,
 	TextField,
 	Text,
 	MainAxisAlignment,
@@ -28,10 +28,10 @@ class Line(Row):
 
 	def __on_change(self, event):
 		try:
-			self.value_field.border_color = colors.BLACK
+			self.value_field.border_color = Colors.BLACK
 			self.callback(event.data)
 		except Exception as e:
-			self.value_field.border_color = colors.RED
+			self.value_field.border_color = Colors.RED
 			print(e.__class__.__name__, e)
 
 		self.update()

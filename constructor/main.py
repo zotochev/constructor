@@ -3,7 +3,7 @@ from flet import (
     app,
     MainAxisAlignment,
     Container,
-    colors,
+    Colors,
     Tabs,
     Tab,
     SnackBar,
@@ -26,7 +26,7 @@ def add_plugins(page: Page, event_system: EventSystem) -> None:
         ],
     )
     tabs_container = Container(content=tabs,
-                               bgcolor=colors.TRANSPARENT,
+                               bgcolor=Colors.TRANSPARENT,
                                height=constants.PAGE_HEIGHT - 60,
                                width=constants.PAGE_WIDTH,
                                padding=0)
