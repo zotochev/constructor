@@ -8,7 +8,7 @@ $requirementsFile = "$scriptDirectory\requirements.txt"
 if (-Not (Test-Path $envPath)) {
     Write-Host "Virtual environment not found. Creating a new virtual environment in $scriptDirectory..."
     try {
-        python -m venv $envPath
+        py -3 -m venv $envPath
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to create the virtual environment."
         }
@@ -17,22 +17,20 @@ if (-Not (Test-Path $envPath)) {
         exit 1
     }
 
-    # Activate and install dependencies if requirements.txt exists
-    Write-Host "Activating the virtual environment and installing dependencies..."
-    & "$envPath\Scripts\Activate.ps1"
-    if (Test-Path $requirementsFile) {
-        pip install --upgrade pip
-        pip install -r $requirementsFile
-        if ($LASTEXITCODE -ne 0) {
-            Write-Error "Failed to install dependencies."
-            exit 1
-        }
-    } else {
-        Write-Host "No requirements.txt found. Skipping dependency installation."
+}
+
+# Activate and install dependencies if requirements.txt exists
+Write-Host "Activating the virtual environment and installing dependencies..."
+& "$envPath\Scripts\Activate.ps1"
+if (Test-Path $requirementsFile) {
+    pip install --upgrade pip
+    pip install -r $requirementsFile
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Failed to install dependencies."
+        exit 1
     }
 } else {
-    Write-Host "Virtual environment found in $scriptDirectory."
-    & "$envPath\Scripts\Activate.ps1"
+    Write-Host "No requirements.txt found. Skipping dependency installation."
 }
 
 # Run the Python script
